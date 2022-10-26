@@ -4,8 +4,14 @@
     <Authors>yotphiligan</Authors>
     <Company>yotphiligan</Company>
     <Product>TrueMoon.FluentReporting</Product>
-    <PackageTags>Desktop</PackageTags>
+    <PackageTags>reporting fluent</PackageTags>
     <Copyright>Copyright © yotphiligan 2022</Copyright>
+
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/YotPhiligan/TrueMoon.FluentReporting</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/YotPhiligan/TrueMoon.FluentReporting</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>icon.png</PackageIcon>
 
     <LangVersion>latest</LangVersion>
     <DebugType>embedded</DebugType>
@@ -23,4 +29,10 @@
     <TF>net6.0</TF>
     <TestsTF>net6.0</TestsTF>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE" Pack="true" PackagePath=""/>
+    <None Include="..\..\materials\icon.png" Pack="true" PackagePath="\"/>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\"/>
+  </ItemGroup>
 </Project>
