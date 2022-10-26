@@ -1,0 +1,26 @@
+<Project>
+  <PropertyGroup>
+    <Version Condition="'$(Version)' == ''">0.0.1.3-a</Version>
+    <Authors>yotphiligan</Authors>
+    <Company>yotphiligan</Company>
+    <Product>TrueMoon.FluentReporting</Product>
+    <PackageTags>Desktop</PackageTags>
+    <Copyright>Copyright © yotphiligan 2022</Copyright>
+
+    <LangVersion>latest</LangVersion>
+    <DebugType>embedded</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    
+    <TieredCompilationQuickJit>true</TieredCompilationQuickJit>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <PreserveCompilationContext>true</PreserveCompilationContext>
+    <PreserveCompilationReferences>true</PreserveCompilationReferences>
+
+    <TF>net6.0</TF>
+    <TestsTF>net6.0</TestsTF>
+  </PropertyGroup>
+</Project>

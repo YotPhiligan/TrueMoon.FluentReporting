@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>$(TF)</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="SkiaSharp" Version="2.88.3" />
+        <PackageReference Include="Topten.RichTextKit" Version="0.4.151" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\TrueMoon.FluentReporting.Contracts\TrueMoon.FluentReporting.Contracts.csproj" />
+    </ItemGroup>
+
+</Project>
