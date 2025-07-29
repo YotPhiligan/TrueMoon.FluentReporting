@@ -1,6 +1,8 @@
+using TrueMoon.FluentReporting.Elements;
+
 namespace TrueMoon.FluentReporting;
 
-public interface IReport
+public interface IReport : IDataSourceProvider
 {
     string Author { get; set; }
     DateTime? Creation { get; set; }
@@ -16,13 +18,12 @@ public interface IReport
     Margin? PageMargin { get; set; }
 
     int PagesCount { get; }
-    
+
     IReadOnlyList<IPage> GetPages();
 }
 
 public interface IReport<TData> : IReport
 {
-    void SetDataSource(TData? data);
     void AddPage(Action<IPage<TData>> action);
-    TData? Data { get; }
+    void SetDataSource(TData data);
 }

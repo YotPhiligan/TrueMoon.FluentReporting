@@ -13,10 +13,15 @@ public class Table<TData> : Element<TData>, ITable<TData>
         return elements;
     }
 
-    public IReadOnlyList<ITableColumn> GetColumns() => _columnConfiguration?.GetColumns() ?? Array.Empty<ITableColumn>();
+    public IReadOnlyList<ITableColumn> GetColumns() => _columnConfiguration?.GetColumns() ?? [];
     public IEnumerable<object>? GetRecords()
     {
-        return _recordsDelegate.Invoke(Page.Report.Data);
+        if (DataSource is TData data)
+        {
+            var items = _recordsDelegate.Invoke(data);
+            return items;
+        }
+        return [];
     }
 
     public string? Font { get; set; }
@@ -28,7 +33,7 @@ public class Table<TData> : Element<TData>, ITable<TData>
     public float? HeaderHeight { get; set; } = 18;
     public bool? IsHeaderVisible { get; set; } = true;
 
-    public Table(IPage<TData> page, IElement? parent = default) : base(page, parent)
+    public Table(object? parent = default) : base(parent)
     {
     }
 }

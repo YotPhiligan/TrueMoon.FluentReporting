@@ -33,7 +33,7 @@ public class PdfExporter : IExporter
 
         foreach (var page in pages)
         {
-            if (page.GetVisibility() is not true)
+            if (page.IsVisible is not true)
             {
                 continue; 
             }

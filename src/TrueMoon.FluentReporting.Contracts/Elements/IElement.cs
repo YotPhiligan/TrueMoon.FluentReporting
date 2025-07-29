@@ -1,6 +1,11 @@
 namespace TrueMoon.FluentReporting.Elements;
 
-public interface IElement : IHideable
+public interface IDataSourceProvider
+{
+    object? DataSource { get; set; }
+}
+
+public interface IElement : IHideable, IDataSourceProvider
 {
     VerticalAlignment? VerticalAlignment { get; set; }
     HorizontalAlignment? HorizontalAlignment { get; set; }
@@ -10,13 +15,8 @@ public interface IElement : IHideable
     float? Width { get; set; }
     float? Height { get; set; }
     
-    object? Parent { get; }
-
-    void SetParent(object? component);
+    object? Parent { get; set; }
 }
 
-public interface IElement<TData> : IElement, IHideable<TData>
-{
-    IPage<TData> Page { get; }
-}
+public interface IElement<TData> : IElement;
 

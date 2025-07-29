@@ -16,7 +16,8 @@ public static class RenderContextExtensions
         {
             context.AdvanceVerticalSpace(textElement.Margin.Top());
         }
-        var str = textElement.GetText();
+        
+        var str = textElement.TextValue.Value;
         
         var tb = new TextBlock();
         

@@ -12,6 +12,13 @@ public class FluentReport<TData> : IReport<TData>
 
     public Margin? PageMargin { get; set; }
     public int PagesCount => _pages.Count;
+    
+    public object? DataSource
+    {
+        get => _data;
+        set => _data = (TData?)value;
+    }
+    
     public IReadOnlyList<IPage> GetPages() => _pages;
 
     public void AddPage(Action<IPage<TData>> action)

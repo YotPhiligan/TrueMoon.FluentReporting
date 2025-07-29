@@ -6,11 +6,8 @@ public interface IText : IElement
     float? FontSize { get; set; }
     bool? IsBold { get; set; }
     bool? IsItalic { get; set; }
-    void SetText(string text);
-    string GetText();
+    
+    IBinding<string> TextValue { get; set; }
 }
 
-public interface IText<TData> : IText, IElement<TData>
-{
-    void SetTextDelegate(Func<TData?,object?> func);
-}
+public interface IText<TData> : IText, IElement<TData>;

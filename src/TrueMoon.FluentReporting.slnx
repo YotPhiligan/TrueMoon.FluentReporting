@@ -1,0 +1,10 @@
+﻿<Solution>
+  <Folder Name="/Items/">
+    <File Path="Directory.Build.props" />
+    <File Path="global.json" />
+    <File Path="Directory.Packages.props" />
+  </Folder>
+  <Project Path="TrueMoon.FluentReporting.Contracts\TrueMoon.FluentReporting.Contracts.csproj" Type="Classic C#" />
+  <Project Path="TrueMoon.FluentReporting.Tests\TrueMoon.FluentReporting.Tests.csproj" Type="Classic C#" />
+  <Project Path="TrueMoon.FluentReporting\TrueMoon.FluentReporting.csproj" Type="Classic C#" />
+</Solution>

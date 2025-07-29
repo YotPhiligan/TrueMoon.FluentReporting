@@ -2,18 +2,15 @@
 
 namespace TrueMoon.FluentReporting;
 
-public interface IPage : IHideable
+public interface IPage : IHideable, IElementsContainer, IDataSourceProvider
 {
     int PageNumber { get; set; }
     float? Width { get; set; }
     float? Height { get; set; }
     Margin? Margin { get; set; }
-    
-    void AddComponent<T>(T component) where T : IElement;
-    IReadOnlyList<IElement> GetComponents();
 }
 
-public interface IPage<TData> : IPage, IHideable<TData>
+public interface IPage<TData> : IPage, IElementsContainer<TData>
 {
     IReport<TData> Report { get; }
 }

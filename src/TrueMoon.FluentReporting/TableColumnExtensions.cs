@@ -1,4 +1,6 @@
-namespace TrueMoon.FluentReporting.Elements;
+using TrueMoon.FluentReporting.Elements;
+
+namespace TrueMoon.FluentReporting;
 
 public static class TableColumnExtensions
 {

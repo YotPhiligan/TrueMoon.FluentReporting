@@ -3,7 +3,7 @@ using TrueMoon.FluentReporting.Elements;
 
 namespace TrueMoon.FluentReporting.Rendering;
 
-public class GenericRenderer<TComponent> : RendererBase<TComponent>, IRenderer<TComponent> where TComponent : IElement
+public class GenericRenderer<TComponent> : RendererBase<TComponent> where TComponent : IElement
 {
     public override void Render(IRenderContext context, TComponent element)
     {

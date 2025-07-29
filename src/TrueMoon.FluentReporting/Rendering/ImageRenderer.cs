@@ -3,7 +3,7 @@ using TrueMoon.FluentReporting.Elements;
 
 namespace TrueMoon.FluentReporting.Rendering;
 
-public class ImageRenderer : RendererBase<IImage>, IRenderer<IImage>
+public class ImageRenderer : RendererBase<IImage>
 {
     public override void Render(IRenderContext context, IImage element)
     {
@@ -11,12 +11,12 @@ public class ImageRenderer : RendererBase<IImage>, IRenderer<IImage>
         {
             context.AdvanceVerticalSpace(element.Margin.Top());
         }
+
+        var imageData = element.ImageData.Value;
         
-        var data = element.GetImageData();
-        
-        if (!data.IsEmpty)
+        if (!imageData.IsEmpty)
         {
-            using var img = SKBitmap.Decode(data.Span);
+            using var img = SKBitmap.Decode(imageData.Span);
 
             var width = element.Width ?? context.Width;
             var height = element.Height ?? context.Height;

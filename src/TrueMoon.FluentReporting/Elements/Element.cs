@@ -2,8 +2,6 @@ namespace TrueMoon.FluentReporting.Elements;
 
 public abstract class Element : IElement
 {
-    private bool? _isVisible = true;
-    private Func<bool?>? _visibilityDelegateDataLess;
     public VerticalAlignment? VerticalAlignment { get; set; }
     public HorizontalAlignment? HorizontalAlignment { get; set; }
     public Margin? Margin { get; set; }
@@ -12,49 +10,37 @@ public abstract class Element : IElement
     public float? Width { get; set; }
     public float? Height { get; set; }
     
-    public object? Parent { get; private set; }
-    public void SetParent(object? component)
+    public object? Parent { get; set; }
+    
+    public object? DataSource
     {
-        Parent = component;
+        get => _dataSource ?? (Parent is IDataSourceProvider s ? s.DataSource : null); 
+        set => SetDataSource(value);
+    }
+    
+    private object? _dataSource;
+    
+    protected virtual void SetParent(object? parent)
+    {
+        Parent = parent;
     }
 
-    public virtual bool? GetVisibility() => _visibilityDelegateDataLess?.Invoke() ?? _isVisible;
-
-    public void SetVisibility(bool value)
+    protected virtual void SetDataSource(object? dataSource)
     {
-        _isVisible = value;
+        _dataSource = dataSource;
     }
 
-    public void SetVisibilityDelegate(Func<bool?> func)
-    {
-        _visibilityDelegateDataLess = func;
-    }
+    public IBinding<bool?> Visibility { get; set; }
+
+    public bool? IsVisible => Visibility.Value;
 }
 
 public abstract class Element<TData> : Element, IElement<TData>
 {
-    private Func<TData,bool?>? _visibilityDelegate;
-
-    protected Element(IPage<TData> page, object? parent = default)
+    protected Element(object? parent = default)
     {
-        Page = page;
-        SetParent(parent ?? page);
+        SetParent(parent);
+        
+        Visibility = new Binding<TData, bool?>(this, true);
     }
-    
-    public IPage<TData> Page { get; }
-    public void SetVisibilityDelegate(Func<TData, bool?> func)
-    {
-        _visibilityDelegate = func;
-    }
-
-    public override bool? GetVisibility()
-    {
-        TData? data = Page.Report.Data;
-        return _visibilityDelegate?.Invoke(data) ?? base.GetVisibility();
-    }
-}
-
-public class EmptyElement : Element
-{
-    
 }

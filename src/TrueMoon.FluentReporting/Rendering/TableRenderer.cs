@@ -4,7 +4,7 @@ using TrueMoon.FluentReporting.Elements;
 
 namespace TrueMoon.FluentReporting.Rendering;
 
-public class TableRenderer : RendererBase<ITable>, IRenderer<ITable>
+public class TableRenderer : RendererBase<ITable>
 {
     public override void Render(IRenderContext context, ITable element)
     {

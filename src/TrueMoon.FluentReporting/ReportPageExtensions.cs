@@ -1,4 +1,6 @@
-﻿namespace TrueMoon.FluentReporting;
+﻿using TrueMoon.FluentReporting.Elements;
+
+namespace TrueMoon.FluentReporting;
 
 public static class ReportPageExtensions
 {
@@ -19,19 +21,20 @@ public static class ReportPageExtensions
     
     public static IPage<TData> Visibility<TData>(this IPage<TData> page, bool value)
     {
-        page.SetVisibility(value);
+        page.Visibility = new Binding<TData,bool?>(page, value);
         return page;
     }
     
     public static IPage<TData> Visibility<TData>(this IPage<TData> element, Func<TData,bool?> func)
     {
-        element.SetVisibilityDelegate(func);
+        element.Visibility = new Binding<TData,bool?>(element, func);
         return element;
     }
     
-    public static IPage<TData> Visibility<TData>(this IPage<TData> element, Func<bool?> func)
+    public static TElement Visibility<TElement>(this TElement element, Func<bool?> func)
+        where TElement : IHideable
     {
-        element.SetVisibilityDelegate(func);
+        element.Visibility(func);
         return element;
     }
 }

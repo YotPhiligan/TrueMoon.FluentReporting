@@ -5,13 +5,12 @@ namespace TrueMoon.FluentReporting;
 public class Page<TData> : IPage<TData>
 {
     private readonly List<IElement> _elements = new ();
-    private Func<TData,bool?>? _visibilityDelegate;
-    private Func<bool?>? _visibilityDelegateDataLess;
-    private bool? _isVisible = true;
 
     public Page(IReport<TData> report)
     {
         Report = report;
+
+        Visibility = new Binding<TData, bool?>(this, true);
     }
 
     public int PageNumber { get; set; }
@@ -28,22 +27,13 @@ public class Page<TData> : IPage<TData>
 
     public IReport<TData> Report { get; }
 
-    public void SetVisibilityDelegate(Func<TData, bool?> func)
-    {
-        _visibilityDelegate = func;
-    }
+    public bool? IsVisible => Visibility?.Value;
+    public IBinding<bool?> Visibility { get; set; }
 
-    public bool? GetVisibility() => _visibilityDelegate?.Invoke(Report.Data) 
-                                    ?? _visibilityDelegateDataLess?.Invoke() 
-                                    ?? _isVisible;
-
-    public void SetVisibility(bool value)
+    private object? _dataSource;
+    public object? DataSource
     {
-        _isVisible = value;
-    }
-
-    public void SetVisibilityDelegate(Func<bool?> func)
-    {
-        _visibilityDelegateDataLess = func;
+        get => _dataSource ?? Report?.DataSource; 
+        set => _dataSource = value;
     }
 }

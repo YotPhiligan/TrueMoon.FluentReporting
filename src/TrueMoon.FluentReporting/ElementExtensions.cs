@@ -1,4 +1,6 @@
-namespace TrueMoon.FluentReporting.Elements;
+using TrueMoon.FluentReporting.Elements;
+
+namespace TrueMoon.FluentReporting;
 
 public static class ElementExtensions
 {
@@ -70,20 +72,20 @@ public static class ElementExtensions
     public static TComponent Visibility<TComponent>(this TComponent component, bool value) 
         where TComponent : IElement
     {
-        component.SetVisibility(value);
+        component.Visibility = new Binding<bool?>(value);
         return component;
     }
     
     public static IElement<TData> Visibility<TData>(this IElement<TData> element, Func<TData,bool?> func)
     {
-        element.SetVisibilityDelegate(func);
+        element.Visibility = element.CreateBinding(func);
         return element;
     }
     
     public static TComponent Visibility<TComponent>(this TComponent component, Func<bool?> func) 
         where TComponent : IElement
     {
-        component.SetVisibilityDelegate(func);
+        component.Visibility = new Binding<bool?>(func);
         return component;
     }
 

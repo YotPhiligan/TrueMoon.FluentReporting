@@ -2,7 +2,7 @@
 
 namespace TrueMoon.FluentReporting.Rendering;
 
-public class TextRenderer : RendererBase<IText>, IRenderer<IText>
+public class TextRenderer : RendererBase<IText>
 {
     public override void Render(IRenderContext context, IText element)
     {
